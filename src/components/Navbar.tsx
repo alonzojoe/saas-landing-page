@@ -51,6 +51,25 @@ const Navbar = () => {
           </button>
         </div>
       </div>
+
+      {isOpen && (
+        <div className="md:hidden bg-neutral-900/60 backdrop-blur-md rounded-xl mt-2">
+          <div className="flex flex-col space-y-4">
+            <a href="#" className="hover:text-neutral-200">
+              Product
+            </a>
+            <a href="#" className="hover:text-neutral-200">
+              Pricing
+            </a>
+            <a href="#" className="hover:text-neutral-200">
+              Resources
+            </a>
+            <a href="#" className="hover:text-neutral-200">
+              Login
+            </a>
+          </div>
+        </div>
+      )}
     </nav>
   );
 };
