@@ -52,24 +52,42 @@ const Navbar = () => {
         </div>
       </div>
 
-      {isOpen && (
-        <div className="md:hidden bg-neutral-900/60 backdrop-blur-md rounded-xl mt-2">
-          <div className="flex flex-col space-y-4">
-            <a href="#" className="hover:text-neutral-200">
-              Product
-            </a>
-            <a href="#" className="hover:text-neutral-200">
-              Pricing
-            </a>
-            <a href="#" className="hover:text-neutral-200">
-              Resources
-            </a>
-            <a href="#" className="hover:text-neutral-200">
-              Login
-            </a>
-          </div>
+      {/* {isOpen && ( */}
+      <div
+        className={`md:hidden bg-neutral-900/60 backdrop-blur-md border-neutral-800 p-4 rounded-xl mt-2 transition-all duration-300 ease-in-out transform ${
+          isOpen
+            ? "opacity-100 translate-y-0 scale-100"
+            : "opacity-0 -translate-y-2 scale-95 pointer-events-none"
+        }`}
+      >
+        <div className="flex flex-col space-y-4">
+          <a href="#" className="hover:text-neutral-200">
+            Product
+          </a>
+          <a href="#" className="hover:text-neutral-200">
+            Pricing
+          </a>
+          <a href="#" className="hover:text-neutral-200">
+            Resources
+          </a>
+          <a href="#" className="hover:text-neutral-200">
+            Login
+          </a>
+          <a
+            href="#"
+            className="border border-neutral-700 text-white py-2 px-4 rounded-lg hover:bg-neutral-700 transition"
+          >
+            Get Demo
+          </a>
+          <a
+            href="#"
+            className="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-500 transition"
+          >
+            Start Free Trial
+          </a>
         </div>
-      )}
+      </div>
+      {/* )} */}
     </nav>
   );
 };
