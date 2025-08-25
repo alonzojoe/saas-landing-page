@@ -87,7 +87,7 @@ const Hero = () => {
           <img
             src={HeroImg}
             alt="hero-img"
-            className="w-full h-auto rounded-3xl border border-neutral-800 mb-2"
+            className="w-full h-auto rounded-3xl border border-neutral-800 mb-20"
           />
         </motion.div>
       </div>
