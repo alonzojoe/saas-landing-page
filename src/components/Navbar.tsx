@@ -53,7 +53,7 @@ const Navbar = () => {
       </div>
 
       {isOpen && (
-        <div className="md:hidden bg-neutral-900/60 backdrop-blur-md rounded-xl mt-2">
+        <div className="md:hidden bg-neutral-900/60 backdrop-blur-md border-neutral-800 p-4 rounded-xl mt-2">
           <div className="flex flex-col space-y-4">
             <a href="#" className="hover:text-neutral-200">
               Product
@@ -66,6 +66,18 @@ const Navbar = () => {
             </a>
             <a href="#" className="hover:text-neutral-200">
               Login
+            </a>
+            <a
+              href="#"
+              className="border border-neutral-700 text-white py-2 px-4 rounded-lg hover:bg-neutral-700 transition"
+            >
+              Get Demo
+            </a>
+            <a
+              href="#"
+              className="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-500 transition"
+            >
+              Start Free Trial
             </a>
           </div>
         </div>
