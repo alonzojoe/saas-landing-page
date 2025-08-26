@@ -1,10 +1,28 @@
 import { HOW_IT_WORKS_CONTENT } from "../constants";
+import { motion, type Variants } from "framer-motion";
 
+const stepsVariants: Variants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.2,
+      duration: 0.6,
+      ease: "easeOut",
+    },
+  }),
+};
 const HowItWorks = () => {
   return (
     <section id="works">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="text-center mb-12 border-t border-t-neutral-800">
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeInOut" }}
+          className="text-center mb-12 border-t border-t-neutral-800"
+        >
           <h2
             className="text-3xl lg:text-5xl mt-20 tracking-tighter bg-gradient-to-l from-neutral-50 via-neutral-300
           to-neutral-600 bg-clip-text text-transparent"
@@ -14,7 +32,59 @@ const HowItWorks = () => {
           <p className="mt-4 text-neutral-400 max-w-xl mx-auto">
             {HOW_IT_WORKS_CONTENT.sectionDescription}
           </p>
-        </div>
+        </motion.div>
+
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          variants={{
+            visible: {
+              transition: {
+                staggerChildren: 0.2,
+              },
+            },
+          }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+          {HOW_IT_WORKS_CONTENT.steps.map((step, index) => (
+            <motion.div
+              custom={index}
+              variants={stepsVariants}
+              key={index}
+              className="bg-neutral-900 p-6 rounded-xl shadow-lg flex flex-col justify-between"
+            >
+              <div>
+                <h3 className="text-xl font-semibold mb-4">{step.title}</h3>
+                <p className="text-neutral-400 mb-4">{step.description}</p>
+              </div>
+              <div className="flex justify-center">
+                <img
+                  className="rounded-lg"
+                  src={step.imageSrc}
+                  alt={step.imageAlt}
+                />
+              </div>
+
+              {step.users && (
+                <div className="flex justify-between items-center mt-4">
+                  <div className="flex -space-x-2">
+                    {step.users.map((user, idx) => (
+                      <img
+                        className="h-8 w-8 rounded-full border-2 border-black"
+                        key={idx}
+                        src={user}
+                        alt={`User-${idx + 1}`}
+                      />
+                    ))}
+                  </div>
+                  <button className="bg-blue-600 hover:bg-blue-500 text-white py-2 px-4 rounded-lg">
+                    Connect
+                  </button>
+                </div>
+              )}
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );
