@@ -1,7 +1,7 @@
 import { HOW_IT_WORKS_CONTENT } from "../constants";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 
-const stepsVariants = {
+const stepsVariants: Variants = {
   hidden: { opacity: 0, y: 50 },
   visible: (i: number) => ({
     opacity: 1,
