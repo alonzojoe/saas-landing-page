@@ -1,7 +1,7 @@
 import { HOW_IT_WORKS_CONTENT } from "../constants";
 import { motion } from "framer-motion";
 
-const stepsVariant = {
+const stepsVariants = {
   hidden: { opacity: 0, y: 50 },
   visible: (i: number) => ({
     opacity: 1,
@@ -13,12 +13,16 @@ const stepsVariant = {
     },
   }),
 };
-
 const HowItWorks = () => {
   return (
     <section id="works">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="text-center mb-12 border-t border-t-neutral-800">
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeInOut" }}
+          className="text-center mb-12 border-t border-t-neutral-800"
+        >
           <h2
             className="text-3xl lg:text-5xl mt-20 tracking-tighter bg-gradient-to-l from-neutral-50 via-neutral-300
           to-neutral-600 bg-clip-text text-transparent"
@@ -28,11 +32,24 @@ const HowItWorks = () => {
           <p className="mt-4 text-neutral-400 max-w-xl mx-auto">
             {HOW_IT_WORKS_CONTENT.sectionDescription}
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          variants={{
+            visible: {
+              transition: {
+                staggerChildren: 0.2,
+              },
+            },
+          }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
           {HOW_IT_WORKS_CONTENT.steps.map((step, index) => (
-            <div
+            <motion.div
+              custom={index}
+              variants={stepsVariants}
               key={index}
               className="bg-neutral-900 p-6 rounded-xl shadow-lg flex flex-col justify-between"
             >
@@ -65,9 +82,9 @@ const HowItWorks = () => {
                   </button>
                 </div>
               )}
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
