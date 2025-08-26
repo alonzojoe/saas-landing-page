@@ -1,4 +1,18 @@
 import { HOW_IT_WORKS_CONTENT } from "../constants";
+import { motion } from "framer-motion";
+
+const stepsVariant = {
+  hidden: { opacity: 0, y: 50 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.2,
+      duration: 0.6,
+      ease: "easeOut",
+    },
+  }),
+};
 
 const HowItWorks = () => {
   return (
@@ -38,7 +52,12 @@ const HowItWorks = () => {
                 <div className="flex justify-between items-center mt-4">
                   <div className="flex -space-x-2">
                     {step.users.map((user, idx) => (
-                      <img key={idx} src={user} alt={`User-${idx + 1}`} />
+                      <img
+                        className="h-8 w-8 rounded-full border-2 border-black"
+                        key={idx}
+                        src={user}
+                        alt={`User-${idx + 1}`}
+                      />
                     ))}
                   </div>
                   <button className="bg-blue-600 hover:bg-blue-500 text-white py-2 px-4 rounded-lg">
