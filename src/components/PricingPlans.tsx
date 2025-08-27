@@ -29,6 +29,58 @@ const PricingPlans = () => {
           </h2>
           <p className="mt-4">{PLANS_CONTENT.sectionDescription}</p>
         </motion.div>
+
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          variants={{
+            visible: {
+              transition: {
+                staggerChildren: 0.5,
+              },
+            },
+          }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+        >
+          {PLANS_CONTENT.plans.map((p, index) => (
+            <motion.div
+              custom={index}
+              variants={childVariants}
+              key={index}
+              className={`p-8 rounded-xl shadow-lg bg-neutral-950 ${
+                p.popular
+                  ? "border border-blue-900/80"
+                  : "border border-neutral-800"
+              }`}
+            >
+              {p.popular && (
+                <div className="text-center mb-4">
+                  <span className="bg-blue-600 text-white text-xs py-1 px-3 rounded-full uppercase">
+                    {PLANS_CONTENT.popularBadge}
+                  </span>
+                </div>
+              )}
+              <h3 className="text-lg lg:text-xl mb-4 tracking-tighter uppercase">
+                {p.name}
+              </h3>
+              <p className="text-neutral-400 mb-6">{p.description}</p>
+              <div className="text-2xl lg:text-xl font-medium mb-6">
+                {p.price}
+              </div>
+              <ul className="mb-8 space-y-2 text-neutral-400">
+                {p.features.map((feature, idx) => (
+                  <li className="flex items-center" key={idx}>
+                    <span className="inline-block w-2 h-2 bg-neutral-600 rounded-full mr-2"></span>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+              <button className="w-full py-3 px-4 bg-blue-600 hover:bg-blue-500 rounded-lg">
+                {PLANS_CONTENT.ctaText}
+              </button>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );
